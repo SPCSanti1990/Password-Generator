@@ -11,27 +11,43 @@ function writePassword() {
 }
 
 function generatePassword() {
-  let validChar = "";
+  let validChar = Array();
   let lowerAlpha = ["abcdefghijklmnopqrstuvwxyz"];
   let capitalAlpha = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
   let number = ["0123456789"];
   let specialChar = ["!@#$%^&*()<>?=+-"];
+  let generatedPWD = "";
+  let passwordLength = prompt("Your custom password should be between 8 and 128 characters long.");
+  Number(passwordLength);
 
-  if (confirm("Use Lower Case Characters?")) {
-    validChar = validChar + lowerAlpha;
+  if (passwordLength < 8 || passwordLength > 128) {
+    length = prompt("Your custom password should be between 8 and 128 characters long.");
+  Number(passwordLength);
   }
-  if (confirm("Use Upper Case Characters?")) {
-    validChar = validChar + capitalAlpha;
+
+  if (passwordLength == null) {
+    passwordLength = prompt("Your custom password should be between 8 and 128 characters long.")
+  Number(passwordLength);
   }
-  if (confirm("Use Numbers?")) {
-    validChar = validChar + number;
-  }
-  if (confirm("Use Special Characters?")) {
-    validChar = validChar + specialChar;
-  }
-  for (let i = 0; i < length; i++){
-    const randomPassword = Math.floor(Math.random() * validChar.length);
-  }
+
+  else {
+    if (confirm("Use Lower Case Characters?")) {
+      validChar.push(lowerAlpha);
+    }
+    if (confirm("Use Upper Case Characters?")) {
+      validChar.push(capitalAlpha);
+    }
+    if (confirm("Use Numbers?")) {
+      validChar.push(number);
+    }
+    if (confirm("Use Special Characters?")) {
+      validChar.push(specialChar);
+    }
+    for (let i = 0; i < passwordLength; i++){
+      let randomPassword = validChar(Math.floor(Math.random() * passwordLength));
+      generatedPWD = generatedPWD + randomPassword;
+    }
+  } return generatedPWD;
 }
 
 // Add event listener to generate button
