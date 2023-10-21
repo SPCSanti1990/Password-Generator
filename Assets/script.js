@@ -12,39 +12,40 @@ function writePassword() {
 
 function generatePassword() {
   let validChar = Array();
-  let lowerAlpha = ["abcdefghijklmnopqrstuvwxyz"];
-  let capitalAlpha = ["ABCDEFGHIJKLMNOPQRSTUVWXYZ"];
-  let number = ["0123456789"];
-  let specialChar = ["!@#$%^&*()<>?=+-"];
+  let lowerAlpha = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"];
+  let capitalAlpha = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
+  let number = ["0","1","2","3","4","5","6","7","8","9"];
+  let specialChar = ["!","@","#","$","%","^","&","*","(",")","<",">","?","=","+","-"];
   let generatedPWD = "";
+  let randomPassword = "";
   let passwordLength = prompt("Your custom password should be between 8 and 128 characters long.");
-  Number(passwordLength);
+  passwordLength = Number(passwordLength);
 
   if (passwordLength < 8 || passwordLength > 128) {
-    length = prompt("Your custom password should be between 8 and 128 characters long.");
-  Number(passwordLength);
+    passwordLength = prompt("Your custom password should be between 8 and 128 characters long.");
+    passwordLength = Number(passwordLength);
   }
 
   if (passwordLength == null) {
     passwordLength = prompt("Your custom password should be between 8 and 128 characters long.")
-  Number(passwordLength);
+    passwordLength = Number(passwordLength);
   }
 
   else {
     if (confirm("Use Lower Case Characters?")) {
-      validChar.push(lowerAlpha);
+      validChar = validChar.concat(lowerAlpha);
     }
     if (confirm("Use Upper Case Characters?")) {
-      validChar.push(capitalAlpha);
+      validChar = validChar.concat(capitalAlpha);
     }
     if (confirm("Use Numbers?")) {
-      validChar.push(number);
+      validChar = validChar.concat(number);
     }
     if (confirm("Use Special Characters?")) {
-      validChar.push(specialChar);
+      validChar = validChar.concat(specialChar);
     }
     for (let i = 0; i < passwordLength; i++){
-      let randomPassword = validChar(Math.floor(Math.random() * passwordLength));
+      randomPassword = validChar[Math.floor(Math.random() * validChar.length)];
       generatedPWD = generatedPWD + randomPassword;
     }
   } return generatedPWD;
